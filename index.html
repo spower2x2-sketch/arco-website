@@ -28,6 +28,29 @@ color:white;
 cursor:none;
 }
 
+/* LUXURY NOISE */
+
+body::after{
+
+content:'';
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:url('https://grainy-gradients.vercel.app/noise.svg');
+
+opacity:.04;
+
+pointer-events:none;
+
+z-index:999;
+}
+
 /* CUSTOM CURSOR */
 
 .cursor{
@@ -123,9 +146,9 @@ opacity:1;
 
 }
 
-/* BACKGROUND */
+/* VIDEO BACKGROUND */
 
-.hero-bg{
+.hero-video{
 
 position:fixed;
 
@@ -135,28 +158,14 @@ left:0;
 width:100%;
 height:100%;
 
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.8)),
-url('https://i.postimg.cc/htzVLJQC/E0522A18-8842-4E2C-A7AA-835F15D18C68.png');
-
-background-size:cover;
-background-position:center;
+object-fit:cover;
 
 z-index:-5;
 
-animation:bgzoom 20s infinite alternate ease-in-out;
-}
-
-@keyframes bgzoom{
-
-from{
-transform:scale(1);
-}
-
-to{
-transform:scale(1.08);
-}
-
+filter:
+brightness(.4)
+contrast(1.05)
+saturate(.9);
 }
 
 .overlay{
@@ -224,9 +233,11 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 
-background:rgba(0,0,0,.2);
+background:rgba(10,9,8,.45);
 
-backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(217,178,124,.08);
+
+backdrop-filter:blur(18px);
 
 z-index:9999;
 }
@@ -291,6 +302,40 @@ text-align:center;
 padding:150px 20px 80px;
 
 position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+
+content:'';
+
+position:absolute;
+
+width:700px;
+height:700px;
+
+background:
+radial-gradient(circle,
+rgba(217,178,124,.08),
+transparent 70%);
+
+filter:blur(80px);
+
+z-index:-1;
+
+animation:pulse 6s infinite alternate;
+}
+
+@keyframes pulse{
+
+from{
+transform:scale(1);
+}
+
+to{
+transform:scale(1.15);
+}
+
 }
 
 .hero-content{
@@ -316,7 +361,7 @@ transform:translateY(0);
 
 .hero-logo{
 
-width:240px;
+width:260px;
 
 margin-bottom:25px;
 
@@ -337,9 +382,11 @@ transform:translateY(-15px);
 
 font-size:170px;
 
+font-weight:600;
+
 font-family:'Cinzel',serif;
 
-letter-spacing:18px;
+letter-spacing:28px;
 
 line-height:1;
 
@@ -393,6 +440,33 @@ position:relative;
 overflow:hidden;
 }
 
+.btn::before{
+
+content:'';
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:100%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.35),
+transparent);
+
+transition:.8s;
+}
+
+.btn:hover::before{
+
+left:120%;
+}
+
 .primary{
 
 background:
@@ -418,7 +492,34 @@ box-shadow:
 0 0 40px rgba(217,178,124,.25);
 }
 
-/* GLASS CARDS */
+/* SCROLL INDICATOR */
+
+.scroll-indicator{
+
+width:2px;
+height:80px;
+
+background:
+linear-gradient(
+to bottom,
+#d9b27c,
+transparent);
+
+margin:60px auto 0;
+
+animation:scrollMove 2s infinite;
+}
+
+@keyframes scrollMove{
+
+50%{
+transform:translateY(12px);
+opacity:.5;
+}
+
+}
+
+/* SECTIONS */
 
 section{
 
@@ -448,6 +549,8 @@ line-height:2;
 
 opacity:.8;
 }
+
+/* CARDS */
 
 .cards{
 
@@ -650,7 +753,7 @@ transition:.4s;
 transform:translateY(-5px);
 }
 
-/* SOCIAL */
+/* SOCIALS */
 
 .socials{
 
@@ -776,10 +879,16 @@ display:none;
 
 <div class="cursor"></div>
 
-<div class="hero-bg"></div>
+<!-- VIDEO BACKGROUND -->
+<video autoplay muted loop playsinline class="hero-video">
+
+<source src="video.mp4" type="video/mp4">
+
+</video>
 
 <div class="overlay"></div>
 
+<!-- MUSIC -->
 <audio id="music" loop>
 
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6fda89f1a5.mp3?filename=luxury-lounge-112191.mp3">
@@ -789,6 +898,8 @@ display:none;
 <button class="music" onclick="toggleMusic()">
 ♫
 </button>
+
+<!-- NAV -->
 
 <nav>
 
@@ -814,12 +925,15 @@ L’arte del Gusto
 
 </nav>
 
+<!-- HERO -->
+
 <section class="hero">
 
 <div class="hero-content">
 
+<!-- NEW LOGO -->
 <img class="hero-logo"
-src="https://i.postimg.cc/65RvqkkC/shʿar-logo-bastayl-rytrw-klasyky-kafyt-wmqhy-qhwt-bsyt.png">
+src="YOUR_TRANSPARENT_LOGO.png">
 
 <h1>ARCO</h1>
 
@@ -843,9 +957,13 @@ Explore Luxury
 
 </div>
 
+<div class="scroll-indicator"></div>
+
 </div>
 
 </section>
+
+<!-- ABOUT -->
 
 <section id="about">
 
@@ -923,6 +1041,8 @@ Classic Italian dessert layered with espresso luxury and rich textures.
 
 </section>
 
+<!-- EXPERIENCE -->
+
 <section id="experience">
 
 <h2 class="section-title">
@@ -983,6 +1103,8 @@ Handcrafted coffee experience with smooth lounge music and Italian vibes.
 
 </section>
 
+<!-- BOOKING -->
+
 <section id="booking">
 
 <h2 class="section-title">
@@ -1039,6 +1161,8 @@ Reserve Now
 
 </section>
 
+<!-- CONTACT -->
+
 <section id="contact">
 
 <h2 class="section-title">
@@ -1047,15 +1171,15 @@ Connect With ARCO
 
 <div class="socials">
 
-<a href="https://www.instagram.com/arcoismailia?igsh=Y2ZhZ21xNnV6M283&utm_source=qr" target="_blank">
+<a href="https://www.instagram.com/arcoismailia" target="_blank">
 Instagram
 </a>
 
-<a href="https://www.facebook.com/share/17mT7xnHYj/?mibextid=wwXIfr" target="_blank">
+<a href="https://www.facebook.com/" target="_blank">
 Facebook
 </a>
 
-<a href="https://www.tiktok.com/@arcoismailia?_r=1&_t=ZS-96QkyNloMDM" target="_blank">
+<a href="https://www.tiktok.com/@arcoismailia" target="_blank">
 TikTok
 </a>
 
@@ -1089,7 +1213,7 @@ document.querySelector('.loader').style.visibility='hidden';
 
 };
 
-/* CUSTOM CURSOR */
+/* CURSOR */
 
 const cursor =
 document.querySelector('.cursor');
@@ -1180,7 +1304,7 @@ entry.target.style.transform='translateY(0px)';
 });
 
 document.querySelectorAll('.card,.exp,.booking')
-.forEach(el=>{
+.forEach((el,i)=>{
 
 el.style.opacity=0;
 
@@ -1188,22 +1312,13 @@ el.style.transform='translateY(80px)';
 
 el.style.transition='1.2s ease';
 
+el.style.transitionDelay = `${i * .15}s`;
+
 observer.observe(el);
-
-});
-
-/* PARALLAX */
-
-window.addEventListener('mousemove',(e)=>{
-
-document.querySelector('.hero-bg').style.transform =
-`translate(${e.clientX*0.01}px,
-${e.clientY*0.01}px) scale(1.05)`;
 
 });
 
 </script>
 
 </body>
-
 </html>
