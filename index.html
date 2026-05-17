@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>ARCO — Italian Luxury Experience</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+background:#0a0908;
+overflow-x:hidden;
+color:white;
+cursor:none;
+}
+
+/* CUSTOM CURSOR */
+
+.cursor{
+
+width:22px;
+height:22px;
+
+border:1px solid #d9b27c;
+border-radius:50%;
+
+position:fixed;
+
+transform:translate(-50%,-50%);
+
+pointer-events:none;
+
+z-index:999999;
+
+backdrop-filter:blur(3px);
+
+transition:
+transform .08s linear,
+width .2s,
+height .2s,
+background .2s;
+}
+
+.cursor-grow{
+
+width:55px;
+height:55px;
+
+background:rgba(217,178,124,.15);
+}
+
+/* LOADER */
+
+.loader{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100vh;
+
+background:#050505;
+
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+z-index:999999;
+
+transition:1.5s;
+}
+
+.loader h1{
+
+font-size:110px;
+
+font-family:'Cinzel',serif;
+
+letter-spacing:18px;
+
+color:#fff;
+
+opacity:0;
+
+animation:fadeIn 2s forwards;
+}
+
+.loader p{
+
+margin-top:15px;
+
+letter-spacing:8px;
+
+color:#d9b27c;
+
+opacity:0;
+
+animation:fadeIn 2s .8s forwards;
+}
+
+@keyframes fadeIn{
+
+to{
+opacity:1;
+}
+
+}
+
+/* BACKGROUND */
+
+.hero-bg{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.8)),
+url('https://i.postimg.cc/htzVLJQC/E0522A18-8842-4E2C-A7AA-835F15D18C68.png');
+
+background-size:cover;
+background-position:center;
+
+z-index:-5;
+
+animation:bgzoom 20s infinite alternate ease-in-out;
+}
+
+@keyframes bgzoom{
+
+from{
+transform:scale(1);
+}
+
+to{
+transform:scale(1.08);
+}
+
+}
+
+.overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+radial-gradient(circle at top right,
+rgba(217,178,124,.15),
+transparent 40%);
+
+z-index:-4;
+}
+
+/* GOLD PARTICLES */
+
+.particle{
+
+position:fixed;
+
+width:4px;
+height:4px;
+
+background:#d9b27c;
+
+border-radius:50%;
+
+opacity:.3;
+
+animation:float linear infinite;
+}
+
+@keyframes float{
+
+from{
+transform:translateY(100vh);
+}
+
+to{
+transform:translateY(-100vh);
+}
+
+}
+
+/* NAVBAR */
+
+nav{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+
+padding:24px 7%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:rgba(0,0,0,.2);
+
+backdrop-filter:blur(15px);
+
+z-index:9999;
+}
+
+.logo{
+
+font-family:'Cinzel',serif;
+
+font-size:52px;
+
+letter-spacing:10px;
+}
+
+.logo span{
+
+display:block;
+
+font-size:12px;
+
+letter-spacing:5px;
+
+margin-top:-10px;
+
+color:#d9b27c;
+}
+
+nav ul{
+
+display:flex;
+
+gap:35px;
+
+list-style:none;
+}
+
+nav a{
+
+text-decoration:none;
+
+color:white;
+
+transition:.4s;
+}
+
+nav a:hover{
+
+color:#d9b27c;
+}
+
+/* HERO */
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+padding:150px 20px 80px;
+
+position:relative;
+}
+
+.hero-content{
+
+max-width:1100px;
+
+animation:heroReveal 2s ease;
+}
+
+@keyframes heroReveal{
+
+from{
+opacity:0;
+transform:translateY(80px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.hero-logo{
+
+width:240px;
+
+margin-bottom:25px;
+
+filter:drop-shadow(0 0 40px rgba(217,178,124,.2));
+
+animation:floatLogo 5s infinite ease-in-out;
+}
+
+@keyframes floatLogo{
+
+50%{
+transform:translateY(-15px);
+}
+
+}
+
+.hero h1{
+
+font-size:170px;
+
+font-family:'Cinzel',serif;
+
+letter-spacing:18px;
+
+line-height:1;
+
+margin-bottom:20px;
+
+text-shadow:
+0 0 50px rgba(217,178,124,.25);
+}
+
+.hero p{
+
+font-size:28px;
+
+max-width:900px;
+
+margin:auto;
+
+line-height:1.9;
+
+color:#e6d1b0;
+
+margin-bottom:45px;
+}
+
+/* BUTTONS */
+
+.buttons{
+
+display:flex;
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+}
+
+.btn{
+
+padding:20px 44px;
+
+border-radius:80px;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:.4s;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.primary{
+
+background:
+linear-gradient(90deg,#b88746,#f3d7a5);
+
+color:black;
+}
+
+.secondary{
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+color:white;
+}
+
+.btn:hover{
+
+transform:translateY(-7px) scale(1.03);
+
+box-shadow:
+0 0 40px rgba(217,178,124,.25);
+}
+
+/* GLASS CARDS */
+
+section{
+
+padding:120px 8%;
+}
+
+.section-title{
+
+font-size:75px;
+
+text-align:center;
+
+font-family:'Cinzel',serif;
+
+margin-bottom:20px;
+}
+
+.section-sub{
+
+max-width:850px;
+
+margin:auto auto 70px;
+
+text-align:center;
+
+line-height:2;
+
+opacity:.8;
+}
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:30px;
+}
+
+.card{
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:35px;
+
+overflow:hidden;
+
+transition:.6s;
+
+transform-style:preserve-3d;
+}
+
+.card:hover{
+
+transform:
+rotateX(6deg)
+rotateY(-6deg)
+translateY(-15px);
+
+box-shadow:
+0 0 60px rgba(217,178,124,.18);
+}
+
+.card img{
+
+width:100%;
+height:320px;
+
+object-fit:cover;
+
+transition:1s;
+}
+
+.card:hover img{
+
+transform:scale(1.08);
+}
+
+.card-content{
+
+padding:30px;
+}
+
+.card h3{
+
+font-size:38px;
+
+font-family:'Cinzel',serif;
+
+margin-bottom:15px;
+}
+
+.card p{
+
+line-height:1.9;
+
+opacity:.8;
+}
+
+/* EXPERIENCE */
+
+.experience{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+}
+
+.exp{
+
+padding:50px 35px;
+
+border-radius:35px;
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(15px);
+
+transition:.5s;
+}
+
+.exp:hover{
+
+transform:translateY(-12px);
+
+box-shadow:
+0 0 40px rgba(217,178,124,.15);
+}
+
+.exp h3{
+
+font-size:34px;
+
+margin-bottom:15px;
+
+font-family:'Cinzel',serif;
+}
+
+/* BOOKING */
+
+.booking{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:60px;
+
+border-radius:40px;
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.08);
+}
+
+.booking-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+}
+
+.booking input,
+.booking select,
+.booking textarea{
+
+width:100%;
+
+padding:20px;
+
+background:rgba(255,255,255,.06);
+
+border:none;
+
+border-radius:20px;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+}
+
+.booking textarea{
+
+height:170px;
+
+resize:none;
+
+margin-top:20px;
+}
+
+.submit{
+
+margin-top:25px;
+
+width:100%;
+
+padding:22px;
+
+border:none;
+
+border-radius:80px;
+
+font-size:18px;
+
+font-weight:700;
+
+cursor:pointer;
+
+background:
+linear-gradient(90deg,#b88746,#f3d7a5);
+
+transition:.4s;
+}
+
+.submit:hover{
+
+transform:translateY(-5px);
+}
+
+/* SOCIAL */
+
+.socials{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+}
+
+.socials a{
+
+padding:18px 35px;
+
+border-radius:50px;
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,.08);
+
+color:white;
+
+text-decoration:none;
+
+transition:.4s;
+}
+
+.socials a:hover{
+
+background:#c89b5e;
+
+transform:translateY(-5px);
+}
+
+/* FOOTER */
+
+footer{
+
+padding:40px;
+
+text-align:center;
+
+opacity:.5;
+}
+
+/* MUSIC */
+
+.music{
+
+position:fixed;
+
+bottom:25px;
+left:25px;
+
+width:80px;
+height:80px;
+
+border:none;
+
+border-radius:50%;
+
+background:
+linear-gradient(90deg,#b88746,#f3d7a5);
+
+font-size:28px;
+
+cursor:pointer;
+
+z-index:99999;
+
+box-shadow:
+0 0 40px rgba(217,178,124,.25);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+.hero h1{
+
+font-size:90px;
+}
+
+.hero p{
+
+font-size:22px;
+}
+
+.section-title{
+
+font-size:50px;
+}
+
+.booking-grid{
+
+grid-template-columns:1fr;
+}
+
+nav ul{
+
+display:none;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="loader">
+
+<h1>ARCO</h1>
+
+<p>L’ARTE DEL GUSTO</p>
+
+</div>
+
+<div class="cursor"></div>
+
+<div class="hero-bg"></div>
+
+<div class="overlay"></div>
+
+<audio id="music" loop>
+
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6fda89f1a5.mp3?filename=luxury-lounge-112191.mp3">
+
+</audio>
+
+<button class="music" onclick="toggleMusic()">
+♫
+</button>
+
+<nav>
+
+<div class="logo">
+
+ARCO
+
+<span>
+L’arte del Gusto
+</span>
+
+</div>
+
+<ul>
+
+<li><a href="#about">About</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#booking">Booking</a></li>
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<img class="hero-logo"
+src="https://i.postimg.cc/65RvqkkC/shʿar-logo-bastayl-rytrw-klasyky-kafyt-wmqhy-qhwt-bsyt.png">
+
+<h1>ARCO</h1>
+
+<p>
+
+Italian Luxury Café & Restaurant Experience
+in the heart of Ismailia.
+A cinematic destination inspired by timeless Italian elegance.
+
+</p>
+
+<div class="buttons">
+
+<a href="#booking" class="btn primary">
+Reserve Experience
+</a>
+
+<a href="#menu" class="btn secondary">
+Explore Luxury
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<h2 class="section-title">
+A Cinematic Escape
+</h2>
+
+<p class="section-sub">
+
+ARCO is more than a restaurant.
+It’s an immersive Italian luxury experience blending architecture,
+golden lighting,
+premium dining,
+and unforgettable moments.
+
+</p>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Italian Pizza</h3>
+
+<p>
+
+Wood-fired pizza crafted with authentic Italian ingredients and cinematic presentation.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Luxury Pasta</h3>
+
+<p>
+
+Creamy truffle pasta with parmesan textures and elegant Italian vibes.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Tiramisu</h3>
+
+<p>
+
+Classic Italian dessert layered with espresso luxury and rich textures.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="experience">
+
+<h2 class="section-title">
+Luxury Experiences
+</h2>
+
+<div class="experience">
+
+<div class="exp">
+
+<h3>Romantic Date</h3>
+
+<p>
+
+Golden lighting and intimate cinematic atmosphere for unforgettable moments.
+
+</p>
+
+</div>
+
+<div class="exp">
+
+<h3>Birthday Events</h3>
+
+<p>
+
+Luxury birthday experiences with elegant decorations and Italian aesthetics.
+
+</p>
+
+</div>
+
+<div class="exp">
+
+<h3>Photo Sessions</h3>
+
+<p>
+
+Fashion-style luxury environment perfect for premium photography sessions.
+
+</p>
+
+</div>
+
+<div class="exp">
+
+<h3>Luxury Coffee</h3>
+
+<p>
+
+Handcrafted coffee experience with smooth lounge music and Italian vibes.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="booking">
+
+<h2 class="section-title">
+Reserve Your Experience
+</h2>
+
+<div class="booking">
+
+<div class="booking-grid">
+
+<input type="text" placeholder="Your Name">
+
+<input type="tel" placeholder="Phone Number">
+
+<input type="date">
+
+<select>
+
+<option>
+Choose Experience
+</option>
+
+<option>
+Romantic Date
+</option>
+
+<option>
+Birthday
+</option>
+
+<option>
+Italian Lunch
+</option>
+
+<option>
+Dinner
+</option>
+
+<option>
+Photo Session
+</option>
+
+</select>
+
+</div>
+
+<textarea placeholder="Special Notes"></textarea>
+
+<button class="submit">
+Reserve Now
+</button>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="section-title">
+Connect With ARCO
+</h2>
+
+<div class="socials">
+
+<a href="https://www.instagram.com/arcoismailia?igsh=Y2ZhZ21xNnV6M283&utm_source=qr" target="_blank">
+Instagram
+</a>
+
+<a href="https://www.facebook.com/share/17mT7xnHYj/?mibextid=wwXIfr" target="_blank">
+Facebook
+</a>
+
+<a href="https://www.tiktok.com/@arcoismailia?_r=1&_t=ZS-96QkyNloMDM" target="_blank">
+TikTok
+</a>
+
+<a href="mailto:arcoeg6@gmail.com">
+Email
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 ARCO — Italian Luxury Experience — Ismailia
+
+</footer>
+
+<script>
+
+/* LOADER */
+
+window.onload = ()=>{
+
+setTimeout(()=>{
+
+document.querySelector('.loader').style.opacity='0';
+
+document.querySelector('.loader').style.visibility='hidden';
+
+},2600);
+
+};
+
+/* CUSTOM CURSOR */
+
+const cursor =
+document.querySelector('.cursor');
+
+document.addEventListener('mousemove',e=>{
+
+cursor.style.left = e.clientX+'px';
+
+cursor.style.top = e.clientY+'px';
+
+});
+
+document.querySelectorAll('a,button,.card')
+.forEach(el=>{
+
+el.addEventListener('mouseenter',()=>{
+
+cursor.classList.add('cursor-grow');
+
+});
+
+el.addEventListener('mouseleave',()=>{
+
+cursor.classList.remove('cursor-grow');
+
+});
+
+});
+
+/* MUSIC */
+
+function toggleMusic(){
+
+const music =
+document.getElementById('music');
+
+if(music.paused){
+
+music.play();
+
+}else{
+
+music.pause();
+
+}
+
+}
+
+/* GOLD PARTICLES */
+
+for(let i=0;i<45;i++){
+
+const p =
+document.createElement('div');
+
+p.classList.add('particle');
+
+p.style.left =
+Math.random()*100+'vw';
+
+p.style.animationDuration =
+5+Math.random()*10+'s';
+
+p.style.opacity =
+Math.random();
+
+document.body.appendChild(p);
+
+}
+
+/* SCROLL REVEAL */
+
+const observer =
+new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity=1;
+
+entry.target.style.transform='translateY(0px)';
+
+}
+
+});
+
+});
+
+document.querySelectorAll('.card,.exp,.booking')
+.forEach(el=>{
+
+el.style.opacity=0;
+
+el.style.transform='translateY(80px)';
+
+el.style.transition='1.2s ease';
+
+observer.observe(el);
+
+});
+
+/* PARALLAX */
+
+window.addEventListener('mousemove',(e)=>{
+
+document.querySelector('.hero-bg').style.transform =
+`translate(${e.clientX*0.01}px,
+${e.clientY*0.01}px) scale(1.05)`;
+
+});
+
+</script>
+
+</body>
+
+</html>
