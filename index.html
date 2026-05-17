@@ -20,7 +20,6 @@ scroll-behavior:smooth;
 }
 
 body{
-
 font-family:'Poppins',sans-serif;
 background:#0a0908;
 overflow-x:hidden;
@@ -28,7 +27,7 @@ color:white;
 cursor:none;
 }
 
-/* LUXURY NOISE */
+/* NOISE OVERLAY */
 
 body::after{
 
@@ -146,9 +145,9 @@ opacity:1;
 
 }
 
-/* VIDEO BACKGROUND */
+/* BACKGROUND */
 
-.hero-video{
+.hero-bg{
 
 position:fixed;
 
@@ -158,14 +157,28 @@ left:0;
 width:100%;
 height:100%;
 
-object-fit:cover;
+background:
+linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.82)),
+url('https://i.postimg.cc/htzVLJQC/E0522A18-8842-4E2C-A7AA-835F15D18C68.png');
+
+background-size:cover;
+background-position:center;
 
 z-index:-5;
 
-filter:
-brightness(.4)
-contrast(1.05)
-saturate(.9);
+animation:bgzoom 20s infinite alternate ease-in-out;
+}
+
+@keyframes bgzoom{
+
+from{
+transform:scale(1);
+}
+
+to{
+transform:scale(1.08);
+}
+
 }
 
 .overlay{
@@ -186,7 +199,7 @@ transparent 40%);
 z-index:-4;
 }
 
-/* GOLD PARTICLES */
+/* PARTICLES */
 
 .particle{
 
@@ -235,9 +248,9 @@ align-items:center;
 
 background:rgba(10,9,8,.45);
 
-border-bottom:1px solid rgba(217,178,124,.08);
+backdrop-filter:blur(15px);
 
-backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(217,178,124,.08);
 
 z-index:9999;
 }
@@ -302,7 +315,6 @@ text-align:center;
 padding:150px 20px 80px;
 
 position:relative;
-overflow:hidden;
 }
 
 .hero::before{
@@ -361,7 +373,7 @@ transform:translateY(0);
 
 .hero-logo{
 
-width:260px;
+width:240px;
 
 margin-bottom:25px;
 
@@ -382,11 +394,11 @@ transform:translateY(-15px);
 
 font-size:170px;
 
-font-weight:600;
-
 font-family:'Cinzel',serif;
 
 letter-spacing:28px;
+
+font-weight:600;
 
 line-height:1;
 
@@ -550,8 +562,6 @@ line-height:2;
 opacity:.8;
 }
 
-/* CARDS */
-
 .cards{
 
 display:grid;
@@ -666,132 +676,6 @@ margin-bottom:15px;
 font-family:'Cinzel',serif;
 }
 
-/* BOOKING */
-
-.booking{
-
-max-width:1100px;
-
-margin:auto;
-
-padding:60px;
-
-border-radius:40px;
-
-background:rgba(255,255,255,.05);
-
-backdrop-filter:blur(15px);
-
-border:1px solid rgba(255,255,255,.08);
-}
-
-.booking-grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:20px;
-}
-
-.booking input,
-.booking select,
-.booking textarea{
-
-width:100%;
-
-padding:20px;
-
-background:rgba(255,255,255,.06);
-
-border:none;
-
-border-radius:20px;
-
-color:white;
-
-font-size:16px;
-
-outline:none;
-}
-
-.booking textarea{
-
-height:170px;
-
-resize:none;
-
-margin-top:20px;
-}
-
-.submit{
-
-margin-top:25px;
-
-width:100%;
-
-padding:22px;
-
-border:none;
-
-border-radius:80px;
-
-font-size:18px;
-
-font-weight:700;
-
-cursor:pointer;
-
-background:
-linear-gradient(90deg,#b88746,#f3d7a5);
-
-transition:.4s;
-}
-
-.submit:hover{
-
-transform:translateY(-5px);
-}
-
-/* SOCIALS */
-
-.socials{
-
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-flex-wrap:wrap;
-}
-
-.socials a{
-
-padding:18px 35px;
-
-border-radius:50px;
-
-background:rgba(255,255,255,.05);
-
-backdrop-filter:blur(10px);
-
-border:1px solid rgba(255,255,255,.08);
-
-color:white;
-
-text-decoration:none;
-
-transition:.4s;
-}
-
-.socials a:hover{
-
-background:#c89b5e;
-
-transform:translateY(-5px);
-}
-
 /* FOOTER */
 
 footer{
@@ -837,27 +721,18 @@ box-shadow:
 @media(max-width:950px){
 
 .hero h1{
-
 font-size:90px;
 }
 
 .hero p{
-
 font-size:22px;
 }
 
 .section-title{
-
 font-size:50px;
 }
 
-.booking-grid{
-
-grid-template-columns:1fr;
-}
-
 nav ul{
-
 display:none;
 }
 
@@ -879,27 +754,9 @@ display:none;
 
 <div class="cursor"></div>
 
-<!-- VIDEO BACKGROUND -->
-<video autoplay muted loop playsinline class="hero-video">
-
-<source src="video.mp4" type="video/mp4">
-
-</video>
+<div class="hero-bg"></div>
 
 <div class="overlay"></div>
-
-<!-- MUSIC -->
-<audio id="music" loop>
-
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6fda89f1a5.mp3?filename=luxury-lounge-112191.mp3">
-
-</audio>
-
-<button class="music" onclick="toggleMusic()">
-♫
-</button>
-
-<!-- NAV -->
 
 <nav>
 
@@ -915,25 +772,19 @@ L’arte del Gusto
 
 <ul>
 
-<li><a href="#about">About</a></li>
-<li><a href="#menu">Menu</a></li>
-<li><a href="#experience">Experience</a></li>
-<li><a href="#booking">Booking</a></li>
-<li><a href="#contact">Contact</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Menu</a></li>
+<li><a href="#">Experience</a></li>
+<li><a href="#">Booking</a></li>
+<li><a href="#">Contact</a></li>
 
 </ul>
 
 </nav>
 
-<!-- HERO -->
-
 <section class="hero">
 
 <div class="hero-content">
-
-<!-- NEW LOGO -->
-<img class="hero-logo"
-src="YOUR_TRANSPARENT_LOGO.png">
 
 <h1>ARCO</h1>
 
@@ -947,245 +798,17 @@ A cinematic destination inspired by timeless Italian elegance.
 
 <div class="buttons">
 
-<a href="#booking" class="btn primary">
+<a href="#" class="btn primary">
 Reserve Experience
 </a>
 
-<a href="#menu" class="btn secondary">
+<a href="#" class="btn secondary">
 Explore Luxury
 </a>
 
 </div>
 
 <div class="scroll-indicator"></div>
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about">
-
-<h2 class="section-title">
-A Cinematic Escape
-</h2>
-
-<p class="section-sub">
-
-ARCO is more than a restaurant.
-It’s an immersive Italian luxury experience blending architecture,
-golden lighting,
-premium dining,
-and unforgettable moments.
-
-</p>
-
-<div class="cards">
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>Italian Pizza</h3>
-
-<p>
-
-Wood-fired pizza crafted with authentic Italian ingredients and cinematic presentation.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>Luxury Pasta</h3>
-
-<p>
-
-Creamy truffle pasta with parmesan textures and elegant Italian vibes.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>Tiramisu</h3>
-
-<p>
-
-Classic Italian dessert layered with espresso luxury and rich textures.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- EXPERIENCE -->
-
-<section id="experience">
-
-<h2 class="section-title">
-Luxury Experiences
-</h2>
-
-<div class="experience">
-
-<div class="exp">
-
-<h3>Romantic Date</h3>
-
-<p>
-
-Golden lighting and intimate cinematic atmosphere for unforgettable moments.
-
-</p>
-
-</div>
-
-<div class="exp">
-
-<h3>Birthday Events</h3>
-
-<p>
-
-Luxury birthday experiences with elegant decorations and Italian aesthetics.
-
-</p>
-
-</div>
-
-<div class="exp">
-
-<h3>Photo Sessions</h3>
-
-<p>
-
-Fashion-style luxury environment perfect for premium photography sessions.
-
-</p>
-
-</div>
-
-<div class="exp">
-
-<h3>Luxury Coffee</h3>
-
-<p>
-
-Handcrafted coffee experience with smooth lounge music and Italian vibes.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- BOOKING -->
-
-<section id="booking">
-
-<h2 class="section-title">
-Reserve Your Experience
-</h2>
-
-<div class="booking">
-
-<div class="booking-grid">
-
-<input type="text" placeholder="Your Name">
-
-<input type="tel" placeholder="Phone Number">
-
-<input type="date">
-
-<select>
-
-<option>
-Choose Experience
-</option>
-
-<option>
-Romantic Date
-</option>
-
-<option>
-Birthday
-</option>
-
-<option>
-Italian Lunch
-</option>
-
-<option>
-Dinner
-</option>
-
-<option>
-Photo Session
-</option>
-
-</select>
-
-</div>
-
-<textarea placeholder="Special Notes"></textarea>
-
-<button class="submit">
-Reserve Now
-</button>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-<h2 class="section-title">
-Connect With ARCO
-</h2>
-
-<div class="socials">
-
-<a href="https://www.instagram.com/arcoismailia" target="_blank">
-Instagram
-</a>
-
-<a href="https://www.facebook.com/" target="_blank">
-Facebook
-</a>
-
-<a href="https://www.tiktok.com/@arcoismailia" target="_blank">
-TikTok
-</a>
-
-<a href="mailto:arcoeg6@gmail.com">
-Email
-</a>
 
 </div>
 
@@ -1243,26 +866,7 @@ cursor.classList.remove('cursor-grow');
 
 });
 
-/* MUSIC */
-
-function toggleMusic(){
-
-const music =
-document.getElementById('music');
-
-if(music.paused){
-
-music.play();
-
-}else{
-
-music.pause();
-
-}
-
-}
-
-/* GOLD PARTICLES */
+/* PARTICLES */
 
 for(let i=0;i<45;i++){
 
@@ -1284,7 +888,7 @@ document.body.appendChild(p);
 
 }
 
-/* SCROLL REVEAL */
+/* REVEAL */
 
 const observer =
 new IntersectionObserver(entries=>{
@@ -1303,7 +907,7 @@ entry.target.style.transform='translateY(0px)';
 
 });
 
-document.querySelectorAll('.card,.exp,.booking')
+document.querySelectorAll('.card,.exp')
 .forEach((el,i)=>{
 
 el.style.opacity=0;
@@ -1312,13 +916,24 @@ el.style.transform='translateY(80px)';
 
 el.style.transition='1.2s ease';
 
-el.style.transitionDelay = `${i * .15}s`;
+el.style.transitionDelay=`${i * .15}s`;
 
 observer.observe(el);
+
+});
+
+/* PARALLAX */
+
+window.addEventListener('mousemove',(e)=>{
+
+document.querySelector('.hero-bg').style.transform =
+`translate(${e.clientX*0.01}px,
+${e.clientY*0.01}px) scale(1.05)`;
 
 });
 
 </script>
 
 </body>
+
 </html>
